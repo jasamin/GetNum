@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E005E561217DAD06009139E3 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = E005E560217DAD06009139E3 /* Tools.m */; };
+		E005E561217DAD06009139E3 /* CVArabicNumeralsGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = E005E560217DAD06009139E3 /* CVArabicNumeralsGetter.m */; };
 		E03064E52179890F00003DF3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E03064E42179890F00003DF3 /* main.m */; };
 		E03064ED217989E900003DF3 /* GetNum.m in Sources */ = {isa = PBXBuildFile; fileRef = E03064EC217989E900003DF3 /* GetNum.m */; };
 /* End PBXBuildFile section */
@@ -25,8 +25,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		E005E55F217DAD06009139E3 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
-		E005E560217DAD06009139E3 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		E005E55F217DAD06009139E3 /* CVArabicNumeralsGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CVArabicNumeralsGetter.h; sourceTree = "<group>"; };
+		E005E560217DAD06009139E3 /* CVArabicNumeralsGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CVArabicNumeralsGetter.m; sourceTree = "<group>"; };
 		E03064E12179890E00003DF3 /* GetNum */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GetNum; sourceTree = BUILT_PRODUCTS_DIR; };
 		E03064E42179890F00003DF3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E03064EB217989E900003DF3 /* GetNum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetNum.h; sourceTree = "<group>"; };
@@ -64,8 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				E03064E42179890F00003DF3 /* main.m */,
-				E005E55F217DAD06009139E3 /* Tools.h */,
-				E005E560217DAD06009139E3 /* Tools.m */,
+				E005E55F217DAD06009139E3 /* CVArabicNumeralsGetter.h */,
+				E005E560217DAD06009139E3 /* CVArabicNumeralsGetter.m */,
 				E03064EB217989E900003DF3 /* GetNum.h */,
 				E03064EC217989E900003DF3 /* GetNum.m */,
 			);
@@ -128,7 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E005E561217DAD06009139E3 /* Tools.m in Sources */,
+				E005E561217DAD06009139E3 /* CVArabicNumeralsGetter.m in Sources */,
 				E03064E52179890F00003DF3 /* main.m in Sources */,
 				E03064ED217989E900003DF3 /* GetNum.m in Sources */,
 			);

@@ -1,14 +1,14 @@
 //
-//  Tools.m
+//  CVArabicNumeralsGetter.m
 //  OCRTest
 //
 //  Created by leeson on 2018/4/20.
 //  Copyright © 2018年 李斯芃 ---> 512523045@qq.com. All rights reserved.
 //
 
-#import "Tools.h"
+#import "CVArabicNumeralsGetter.h"
 
-@implementation Tools
+@implementation CVArabicNumeralsGetter
 
 //MARK: - --- 中文数字字典
 #define DICT_CNNUM  NSDictionary *chnNumChar = \
@@ -22,9 +22,14 @@
                                 };
 
 //MARK: - --- 中文数字转阿拉伯数字
-+ (double)chineseNumbersReturnArabicNumerals:(NSString *)chnStr{
++ (void)chineseNumbersReturnArabicNumerals:(NSString *)chnStr result:(void(^)(NSArray *numArr,double num))callBack {
     NSLog(@"%@",chnStr);
+    NSArray *numArray;
     //替换特殊字符
+    if ([chnStr containsString:@"块钱"]) {
+        chnStr = [chnStr stringByReplacingOccurrencesOfString:@"块钱" withString:@""];
+    }
+    
     if ([chnStr containsString:@"块"]) {
         chnStr = [chnStr stringByReplacingOccurrencesOfString:@"块" withString:@"."];
     }else if ([chnStr containsString:@"圆"]) {
@@ -68,6 +73,7 @@
    
     //截取小数点之前的字符
     NSRange range = [chnStr rangeOfString:@"."];
+    NSString *originStr = chnStr;
     NSString *tempString;
     if (range.length>0) {
         tempString = [chnStr substringFromIndex:range.location+1];
@@ -90,7 +96,15 @@
         }
     }
     
-    
+    if (strArrM.count == 0) {
+        numArray = [CVArabicNumeralsGetter qianqian:originStr];
+        NSString *valueS = @"";
+        if (numArray>0) {
+            valueS = numArray[numArray.count-1];
+        }
+        callBack(numArray,[valueS doubleValue]);
+        return;
+    }
     //遍历字符数组
     for(NSInteger i = 0; i < strArrM.count; i++){
         //取出中文数字字符
@@ -142,12 +156,46 @@
     
     //NSLog(@"中文数字：%@,阿拉伯数字：%ld",chnStr,rtn + section);
     NSLog(@"%@",result);
-    return [result doubleValue];
+    callBack(numArray,[result doubleValue]);
 }
 
 - (void)goodsDeal:(NSString *)str {
     
 }
+
++ (NSMutableArray *)qianqian:(NSString *)string {
+    
+    NSMutableArray *numArr = [[NSMutableArray alloc]init];
+    NSString *pre = @".0123456789";
+    NSString *indexString ;
+    NSInteger length = string.length;
+    NSString *temStr=@"";
+    for (NSInteger i = 0; i<length; i++) {
+        indexString = [string substringToIndex:1];
+        string = [string substringFromIndex:1];
+        NSLog(@"%@,%@",indexString,string);
+        if ([pre containsString:indexString]) {
+            NSLog(@"is ture");
+            temStr = [temStr stringByAppendingString:indexString];
+            if (i==length-1) {
+                if (temStr.length >0) {
+                    [numArr addObject:temStr];
+                    temStr = @"";
+                }
+            }
+        }else{
+            if (temStr.length >0) {
+                [numArr addObject:temStr];
+                temStr = @"";
+            }
+        }
+    }
+    NSLog(@"获得全部数字为 %@",numArr);
+    return numArr;
+    
+}
+
+
 
 ///MARK: - --- 文字处理
 /*
@@ -294,6 +342,27 @@
     }
     NSLog(@"\n====\n    中文数字： %@ ;\n    阿拉伯数字：%ld 。\n====",chnStr,total);
     return total;
+}
+
+- (void)catalogBySubject:(NSString *)string result:(void(^)(CVConsumptionType type))result {
+    //eat
+    NSString *eat = @"早餐、早歺、早点、早饭、午餐、午饭、中饭、晚饭、晚餐、下午茶、面包、汽水、面、粉、可乐、雪碧、七喜、芬达、美年达、果粒橙、汤、菜、肉、青瓜、南瓜、虾、蟹、蛋、面包、莲蓉、豆沙、土豆";
+    NSArray *eatArr = [eat componentsSeparatedByString:@"、"];
+    for (NSString *eatStr in eatArr) {
+        if ([string containsString:eatStr]) {
+            result(CVEatTyp);
+            return;
+        }
+    }
+    NSString *clouth = @"衣服、裙子、鞋子、裙、裤、衫、T恤";
+    NSArray *clouthArr = [eat componentsSeparatedByString:@"、"];
+    for (NSString *clouthStr in clouthArr) {
+        if ([string containsString:clouthStr]) {
+            result(CVClothType);
+            return;
+        }
+    }
+    
 }
 
 @end
